@@ -1,0 +1,32 @@
+# Virtual environments
+env/
+venv/
+*.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# IDE and editor
+.vscode/
+.idea/
+*.code-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local config and secrets
+.env
+.env.local
+.env.*.local
+
+# Data and indexes
+Data/chroma/
+Data/*.db
+Data/*.sqlite3
+
+# Logs
+*.log
