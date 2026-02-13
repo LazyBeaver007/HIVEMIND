@@ -4,6 +4,7 @@ import chromadb
 from chromadb.utils import embedding_functions
 import json
 from pathlib import Path
+import uuid
 from util import ChatMemory
 
 
@@ -15,11 +16,12 @@ class HiveProcessor:
         data_dir.mkdir(exist_ok=True)
         self.memory = ChatMemory(data_dir / "nexus_history.db")
         self.chroma_client = chromadb.PersistentClient(path=str(data_dir / "chroma"))
-        try:
-            self.collection = self.chroma_client.create_collection(name="research_papers")
-        except Exception:
-            self.collection = self.chroma_client.get_collection(name="research_papers")
+        self.collection = self._create_new_collection()
         self.graph = nx.DiGraph()
+
+    def _create_new_collection(self):
+        name = f"research_papers_{uuid.uuid4().hex[:8]}"
+        return self.chroma_client.create_collection(name=name)
 
     def process_pdf(self, file_path):
         reader = PyPDF2.PdfReader(file_path)
@@ -131,6 +133,9 @@ class HiveProcessor:
 
     def reset_graph(self):
         self.graph = nx.DiGraph()
+
+    def reset_vector_index(self):
+        self.collection = self._create_new_collection()
 
     def list_sessions(self, limit=None):
         return self.memory.list_sessions(limit=limit)

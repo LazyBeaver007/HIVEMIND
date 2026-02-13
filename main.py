@@ -105,6 +105,8 @@ class NexusApp:
         self.chat_history.insert(tk.END, f"System: Started new session {self.session_id[:8]}\n")
         if hasattr(self.engine, "reset_graph"):
             self.engine.reset_graph()
+        if hasattr(self.engine, "reset_vector_index"):
+            self.engine.reset_vector_index()
         self.visualizer.update_graph(self.engine.graph)
 
     def show_history(self):
