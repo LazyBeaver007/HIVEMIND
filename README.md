@@ -1,4 +1,5 @@
-# HIVEMIND RAG UI
+# HIVEMIND RAG 
+<img width="1919" height="1073" alt="Screenshot 2026-02-19 114519" src="https://github.com/user-attachments/assets/08878ef6-f7a6-478c-ab51-ce7303c8f429" />
 
 A small desktop Retrieval-Augmented Generation (RAG) app built with Tkinter. It ingests PDFs, builds a persistent vector index and knowledge graph, and lets you chat with an LLM while visualizing the concept graph.
 
